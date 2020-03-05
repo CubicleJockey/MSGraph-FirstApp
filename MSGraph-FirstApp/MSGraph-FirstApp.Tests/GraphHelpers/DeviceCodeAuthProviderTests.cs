@@ -1,12 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using FakeItEasy;
 using FluentAssertions;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSGraph_FirstApp.GraphHelpers;
+using System;
+using System.Collections.Generic;
 
 namespace MSGraph_FirstApp.Tests.GraphHelpers
 {
