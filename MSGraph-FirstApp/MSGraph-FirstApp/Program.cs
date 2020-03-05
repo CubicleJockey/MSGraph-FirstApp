@@ -27,5 +27,7 @@ namespace MSGraph_FirstApp
 
             WriteLine(message);
         }
+
+        //TODO: https://docs.microsoft.com/en-us/graph/tutorials/dotnet-core?tutorial-step=3 (Sign in and display the access token section)
     }
 }
