@@ -15,5 +15,5 @@
 * Tools -> NuGet Package Manager -> Package Manager Console
 * Set-Location -Path .\MSGraph-FirstApp
 * dotnet user-secrets init
-* dotnet user-secrets set appId ".NET Core MSGraph-FirstApp" [Set in Azure Active Directory]
-* dotnet user-secrets set scopes "User.Read;Calendars.Read"
+* dotnet user-secrets set ApplicationClientId "<ApplicationClientId - GUID>" [Set in Azure Active Directory]
+* dotnet user-secrets set Scopes "User.Read;Calendars.Read"
