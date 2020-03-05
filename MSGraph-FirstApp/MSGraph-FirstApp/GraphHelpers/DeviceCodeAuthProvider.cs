@@ -11,9 +11,12 @@ namespace MSGraph_FirstApp.GraphHelpers
 {
     public class DeviceCodeAuthProvider : IAuthenticationProvider
     {
+        private const string EMPTYERROR = "Cannot be empty.";
+
         private readonly IPublicClientApplication msaClientApplication;
         private IAccount userAccount;
         private readonly IEnumerable<string> scopes;
+        private readonly Guid applicationClientId;
 
         /// <summary>
         /// Ctor
@@ -22,17 +25,43 @@ namespace MSGraph_FirstApp.GraphHelpers
         /// <param name="scopes"></param>
         public DeviceCodeAuthProvider(Guid applicationClientId, IEnumerable<string> scopes)
         {
-            this.scopes = scopes;
+            this.scopes = scopes ?? throw new ArgumentNullException(nameof(scopes));
+            if(applicationClientId == Guid.Empty) { throw new ArgumentException(EMPTYERROR, nameof(applicationClientId)); }
+
+            this.applicationClientId = applicationClientId;
 
             msaClientApplication = 
-                PublicClientApplicationBuilder.Create(applicationClientId.ToString())
+                PublicClientApplicationBuilder.Create(this.applicationClientId.ToString())
                                               .WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
                                               .Build();
         }
 
+        /// <summary>
+        /// Ctor Overload
+        /// </summary>
+        /// <param name="userAccount">User Account</param>
+        /// <param name="msaClientApplication">Public Client Application</param>
+        /// <param name="applicationClientId">Application Client Id</param>
+        /// <param name="scopes">Scopes</param>
+        public DeviceCodeAuthProvider(
+            IAccount userAccount,
+            IPublicClientApplication msaClientApplication,
+            Guid applicationClientId,
+            IEnumerable<string> scopes)
+        {
+            this.userAccount = userAccount ?? throw new ArgumentNullException(nameof(userAccount));
+            this.msaClientApplication = msaClientApplication ?? throw new ArgumentNullException(nameof(msaClientApplication));
+
+            if(applicationClientId == Guid.Empty) { throw new ArgumentException(EMPTYERROR, nameof(applicationClientId));}
+            this.applicationClientId = applicationClientId;
+            
+            this.scopes = scopes ?? throw new ArgumentNullException(nameof(scopes));
+
+        }
+
         public async Task<string> GetAccessTokens()
         {
-            //No account must log-in
+            //No userAccount must log-in
             if (userAccount == null)
             {
                 try

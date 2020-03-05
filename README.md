@@ -1,6 +1,11 @@
 # MSGraph-FirstApp
  Performing a sample of Microsoft Graph
 
+#### Project Requirements:
+* [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
+
+#### Documentation Links:
 * [Microsoft Graph](https://developer.microsoft.com/en-us/graph)
 * [Getting Started Tutorial](https://docs.microsoft.com/en-us/graph/tutorials/dotnet-core)
 * [Azure Active Directory](https://aad.portal.azure.com/)
