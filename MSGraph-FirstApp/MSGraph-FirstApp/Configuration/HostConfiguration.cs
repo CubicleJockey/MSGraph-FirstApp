@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace MSGraph_FirstApp
+namespace MSGraph_FirstApp.Configuration
 {
     /// <summary>
     /// Host Configuration
@@ -20,8 +20,8 @@ namespace MSGraph_FirstApp
                 .Build();
 
             // Check for required settings
-            if (string.IsNullOrWhiteSpace(settings["appId"]) 
-                || string.IsNullOrWhiteSpace(settings["scopes"]))
+            if (string.IsNullOrWhiteSpace(settings[ConfigurationSettings.ApplicationClientId]) 
+                || string.IsNullOrWhiteSpace(settings[ConfigurationSettings.Scopes]))
             {
                 return null;
             }

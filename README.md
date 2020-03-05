@@ -4,6 +4,7 @@
 * [Microsoft Graph](https://developer.microsoft.com/en-us/graph)
 * [Getting Started Tutorial](https://docs.microsoft.com/en-us/graph/tutorials/dotnet-core)
 * [Azure Active Directory](https://aad.portal.azure.com/)
+* [dotnet user-secrets Documentation](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows&source=docs)
 
 #### dotnet cli commands:
 * Tools -> NuGet Package Manager -> Package Manager Console

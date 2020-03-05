@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
+using MSGraph_FirstApp.Configuration;
 using static System.Console;
 
 namespace MSGraph_FirstApp
@@ -40,6 +41,8 @@ namespace MSGraph_FirstApp
             try
             {
                 var deviceAuthProvider = new DeviceCodeAuthProvider(applicationClientId, scopes);
+                var accessToken = deviceAuthProvider.GetAccessTokens().Result;
+                WriteLine($"Access token: {accessToken}{Environment.NewLine}");
 
                 var isValidChoice = int.TryParse(ReadLine(), out var choice);
                 if (!isValidChoice)

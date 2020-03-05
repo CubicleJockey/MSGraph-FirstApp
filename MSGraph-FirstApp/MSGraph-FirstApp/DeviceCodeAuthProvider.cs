@@ -16,12 +16,17 @@ namespace MSGraph_FirstApp
         private IAccount userAccount;
         private readonly IEnumerable<string> scopes;
 
-        public DeviceCodeAuthProvider(string appId, IEnumerable<string> scopes)
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="applicationClientId">Application Client Id (GUID)</param>
+        /// <param name="scopes"></param>
+        public DeviceCodeAuthProvider(Guid applicationClientId, IEnumerable<string> scopes)
         {
             this.scopes = scopes;
 
             msaClientApplication = 
-                PublicClientApplicationBuilder.Create(appId)
+                PublicClientApplicationBuilder.Create(applicationClientId.ToString())
                                               .WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
                                               .Build();
         }
