@@ -37,25 +37,33 @@ namespace MSGraph_FirstApp
                 return;
             }
 
-
-            var deviceAuthProvider = new DeviceCodeAuthProvider(applicationClientId, scopes);
-
-            var isValidChoice = int.TryParse(ReadLine(), out var choice);
-            if(!isValidChoice)
+            try
             {
-                //Invalid options choosing one
-                choice = 1;
+                var deviceAuthProvider = new DeviceCodeAuthProvider(applicationClientId, scopes);
+
+                var isValidChoice = int.TryParse(ReadLine(), out var choice);
+                if (!isValidChoice)
+                {
+                    //Invalid options choosing one
+                    choice = 1;
+                }
+
+                var message = choice switch
+                {
+                    0 => "Goodbye...",
+                    1 => "<Place Holder for Access Token",
+                    2 => "<Place Holder for Calendar List",
+                    _ => "Invalid Choice!, Please Try Again"
+                };
+
+                WriteLine(message);
             }
-
-            var message = choice switch
+            catch (Exception exception)
             {
-                0 => "Goodbye...",
-                1 => "<Place Holder for Access Token",
-                2 => "<Place Holder for Calendar List",
-                _ => "Invalid Choice!, Please Try Again"
-            };
-
-            WriteLine(message);
+                WriteLine($"Error occured: [{exception.Message}]");
+                ReadLine();
+                return;
+            }
         }
 
         //TODO: https://docs.microsoft.com/en-us/graph/tutorials/dotnet-core?tutorial-step=3 (Sign in and display the access token section)

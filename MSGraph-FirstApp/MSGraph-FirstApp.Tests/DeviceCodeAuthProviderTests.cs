@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FakeItEasy;
 using FluentAssertions;
@@ -14,7 +15,7 @@ namespace MSGraph_FirstApp.Tests
         [TestMethod]
         public void InheritsFromIAuthenticationProvider()
         {
-            var provider = new DeviceCodeAuthProvider(A.Dummy<string>(), A.Dummy<IEnumerable<string>>());
+            var provider = new DeviceCodeAuthProvider(A.Dummy<Guid>(), A.Dummy<IEnumerable<string>>());
 
             provider.Should().BeAssignableTo<IAuthenticationProvider>();
         }
