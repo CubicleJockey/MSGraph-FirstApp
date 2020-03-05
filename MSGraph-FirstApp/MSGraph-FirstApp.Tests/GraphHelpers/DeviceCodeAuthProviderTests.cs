@@ -4,8 +4,9 @@ using FakeItEasy;
 using FluentAssertions;
 using Microsoft.Graph;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSGraph_FirstApp.GraphHelpers;
 
-namespace MSGraph_FirstApp.Tests
+namespace MSGraph_FirstApp.Tests.GraphHelpers
 {
     [TestClass]
     public class DeviceCodeAuthProviderTests

@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSGraph_FirstApp.Configuration;
 
-namespace MSGraph_FirstApp.Tests
+namespace MSGraph_FirstApp.Tests.Configuration
 {
     [TestClass]
     public class ConfigurationSettingsTests

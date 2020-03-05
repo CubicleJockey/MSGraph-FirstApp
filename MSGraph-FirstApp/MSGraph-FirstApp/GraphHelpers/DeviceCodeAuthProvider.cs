@@ -1,14 +1,13 @@
-﻿using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-
+using Microsoft.Graph;
+using Microsoft.Identity.Client;
 using static System.Console;
 
-namespace MSGraph_FirstApp
+namespace MSGraph_FirstApp.GraphHelpers
 {
     public class DeviceCodeAuthProvider : IAuthenticationProvider
     {

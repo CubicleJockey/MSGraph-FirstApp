@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 using MSGraph_FirstApp.Configuration;
+using MSGraph_FirstApp.GraphHelpers;
 using static System.Console;
 
 namespace MSGraph_FirstApp
