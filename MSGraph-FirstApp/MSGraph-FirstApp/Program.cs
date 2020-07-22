@@ -49,7 +49,7 @@ namespace MSGraph_FirstApp
 
                 // Get signed in user
                 var user = GraphHelper.GetMeAsync().Result;
-                WriteLine($"Welcome {user.DisplayName}!{Environment.NewLine}{Environment.NewLine}");
+                WriteLine($"Welcome {user?.DisplayName}!{Environment.NewLine}{Environment.NewLine}");
 
                 int choice = -1;
                 while (choice != 0)
