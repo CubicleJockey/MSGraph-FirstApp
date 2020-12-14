@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MSGraph_FirstApp.Configuration;
 using MSGraph_FirstApp.GraphHelpers;
@@ -15,7 +17,7 @@ namespace MSGraph_FirstApp
             Configuration = HostConfiguration.LoadApplicationSettings();
         }
 
-        public static void Main()
+        public static async Task Main()
         {
             WriteLine($".NET Core Graph First App{Environment.NewLine}");
 
@@ -42,7 +44,7 @@ namespace MSGraph_FirstApp
             try
             {
                 var deviceAuthProvider = new DeviceCodeAuthProvider(applicationClientId, scopes);
-                var accessToken = deviceAuthProvider.GetAccessTokens().Result;
+                var accessToken = await deviceAuthProvider.GetAccessTokens();
                
                 // Initialize Graph client
                 GraphHelper.Initialize(deviceAuthProvider);
@@ -93,9 +95,8 @@ namespace MSGraph_FirstApp
             }
             catch (Exception exception)
             {
-                WriteLine($"Error occured: [{exception.Message}]");
+                WriteLine($"Error occurred: [{exception.Message}]");
                 ReadLine();
-                return;
             }
         }
 
@@ -119,14 +120,19 @@ namespace MSGraph_FirstApp
 
             WriteLine("Events:");
 
+
+            var sb = new StringBuilder();
             foreach (var calendarEvent in events)
             {
-                WriteLine($"Subject: {calendarEvent.Subject}");
-                WriteLine($"\tOrganizer: {calendarEvent.Organizer.EmailAddress.Name}");
-                WriteLine($"\tStart: {FormatDateTimeTimeZone(calendarEvent.Start)}");
-                WriteLine($"\tEnd: {FormatDateTimeTimeZone(calendarEvent.End)}");
-                WriteLine($"{Environment.NewLine}{Environment.NewLine}");
+                sb.AppendLine($"Subject: {calendarEvent.Subject}");
+                sb.AppendLine($"\tOrganizer: {calendarEvent.Organizer.EmailAddress.Name}");
+                sb.AppendLine($"\tStart: {FormatDateTimeTimeZone(calendarEvent.Start)}");
+                sb.AppendLine($"\tEnd: {FormatDateTimeTimeZone(calendarEvent.End)}");
+                sb.AppendLine($"{Environment.NewLine}{Environment.NewLine}");
             }
+
+            var output = sb.ToString();
+            WriteLine(string.IsNullOrWhiteSpace(output) ? $"No Events Found. {Environment.NewLine}" : output);
         }
 
         #endregion Helper Methods
